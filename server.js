@@ -4,8 +4,10 @@ const app = express();
 const db = require('./config/keys').mongoURI;
 const bodyParser = require('body-parser');
 
+const License = require('./models/License');
+
 // Route Imports
-// const userIds = require("./routes/api/userIds")
+const licenses = require("./routes/api/licenses")
 
 
 // DB Connection
@@ -14,13 +16,24 @@ mongoose
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
 
+app.get("/", (req, res) => {
+  const license = new License({
+    user: "Lisa Steele",
+    username: "lisahsteele",
+    license: "Figma",
+    cost: 100.00
+  })
+  license.save()
+  res.send("hello world")
+});
+
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
 // Routes
-// app.use("/api/users", userIds)
+app.use("/api/licenses", licenses)
 
 
 
