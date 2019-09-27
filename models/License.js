@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const LicenseSchema = new Schema({
-  user: {
+  first_name: {
+    type: String,
+    required: true
+  },
+  last_name: {
     type: String,
     required: true
   },
@@ -10,19 +14,36 @@ const LicenseSchema = new Schema({
     type: String,
     required: true
   },
-  license: {
+  department: {
     type: String,
     required: true
   },
-  // registered_date: {
-  //   type: Date,
-  //   required: true
-  // },
-  // expiry_date: {
-  //   type: Date
-  // },
+  application: {
+    type: String,
+    required: true
+  },
+  // subscription or one-off payment
+  payment_model: {
+    type: String,
+    required: true
+  },
+  purchase_date: {
+    type: Date
+  },
+  expires: {
+    type: Boolean,
+    required: true
+  },
+  expiry_date: {
+    type: Date
+  },
   cost: {
     type: Number,
+    required: true
+  }, 
+  // monthly, quarterly, yearly
+  cadence: {
+    type: String,
     required: true
   }
 });
